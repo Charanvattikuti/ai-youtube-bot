@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: n8n-ai-bot
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: N8N_BASIC_AUTH_ACTIVE
+        value: "true"
+      - key: N8N_BASIC_AUTH_USER
+        value: "admin"
+      - key: N8N_BASIC_AUTH_PASSWORD
+        value: "1234"
+      - key: GENERIC_TIMEZONE
+        value: "Asia/Kolkata"
+      - key: WEBHOOK_URL
+        value: "https://n8n-ai-bot.onrender.com/"
+      - key: PORT
+        value: "5678"
