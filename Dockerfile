@@ -1,14 +1,16 @@
-FROM n8nio/n8n:latest
+# Use Debian-based image instead of Alpine (so we can use apt-get)
+FROM n8nio/n8n:1.67.1-debian
 
-# Install tini (process manager)
+# Install tini
 USER root
-RUN apk add --no-cache tini
+RUN apt-get update && apt-get install -y tini && apt-get clean
 
-# Switch back to n8n user
+# Switch back to the n8n user
 USER node
 
-# Expose port
+# Expose default n8n port
 EXPOSE 5678
 
 # Start n8n using tini
-CMD ["tini", "--", "n8n", "start"]
+ENTRYPOINT ["tini", "--"]
+CMD ["n8n"]
