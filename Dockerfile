@@ -1,16 +1,15 @@
- # Use official n8n image
-FROM n8nio/n8n:latest
+# Use the official n8n image directly
+FROM docker.n8n.io/n8nio/n8n:latest
 
-# Set working directory
-WORKDIR /data
+# Tell Render which port to use
+ENV N8N_PORT=10000
+ENV WEBHOOK_URL=https://n8n-ai-bot.onrender.com/
 
-# Environment variables
+# Optional login credentials
 ENV N8N_BASIC_AUTH_ACTIVE=true
 ENV N8N_BASIC_AUTH_USER=admin
 ENV N8N_BASIC_AUTH_PASSWORD=1234
-ENV N8N_HOST=0.0.0.0
-ENV N8N_PORT=5678
 
-EXPOSE 5678
+EXPOSE 10000
 
-CMD ["n8n", "start"]
+CMD ["n8n"]
