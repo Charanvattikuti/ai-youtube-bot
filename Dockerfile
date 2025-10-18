@@ -2,7 +2,7 @@ FROM n8nio/n8n:latest
 
 # Install tini (process manager)
 USER root
-RUN apt-get update && apt-get install -y tini && apt-get clean
+RUN apk add --no-cache tini
 
 # Switch back to n8n user
 USER node
